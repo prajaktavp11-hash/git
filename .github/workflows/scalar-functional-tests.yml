@@ -123,10 +123,10 @@ jobs:
           repository: ${{ env.SCALAR_REPOSITORY }}
           ref: ${{ env.SCALAR_REF }}
 
-      - name: Setup .NET Core
+      - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
-          dotnet-version: '3.1.426'
+          dotnet-version: '9.0.306'
 
       - name: Install dependencies
         run: dotnet restore
