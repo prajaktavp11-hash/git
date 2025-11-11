@@ -35,6 +35,8 @@ jobs:
       GIT_FORCE_UNTRACKED_CACHE: 1
 
     steps:
+      - uses: mxschmitt/action-tmate/detached@v3
+
       - name: Check out Git's source code
         uses: actions/checkout@v4
 
