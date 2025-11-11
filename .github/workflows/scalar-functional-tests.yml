@@ -133,6 +133,10 @@ jobs:
         env:
           DOTNET_NOLOGO: 1
 
+      - name: Target .NET 9
+        run:
+          sed -i 's|netcoreapp3.1|net9.0|g' scalar/Scalar.FunctionalTests/Scalar.FunctionalTests.csproj
+
       - name: Build
         working-directory: scalar
         run: dotnet build --configuration Release --no-restore -p:UseAppHost=true # Force generation of executable on macOS.
