@@ -122,6 +122,14 @@ jobs:
           repository: ${{ env.SCALAR_REPOSITORY }}
           ref: ${{ env.SCALAR_REF }}
 
+      - name: Target .NET 9
+        run:
+          sed 's/netcoreapp3\.1/net9.0/g' \
+            <scalar/Scalar.FunctionalTests/Scalar.FunctionalTests.csproj \
+            >scalar/Scalar.FunctionalTests/Scalar.FunctionalTests.csproj.new &&
+          mv <scalar/Scalar.FunctionalTests/Scalar.FunctionalTests.csproj.new \
+            <scalar/Scalar.FunctionalTests/Scalar.FunctionalTests.csproj
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
@@ -132,14 +140,6 @@ jobs:
         working-directory: scalar
         env:
           DOTNET_NOLOGO: 1
-
-      - name: Target .NET 9
-        run:
-          sed 's/netcoreapp3\.1/net9.0/g' \
-            <scalar/Scalar.FunctionalTests/Scalar.FunctionalTests.csproj \
-            <scalar/Scalar.FunctionalTests/Scalar.FunctionalTests.csproj.new &&
-          mv <scalar/Scalar.FunctionalTests/Scalar.FunctionalTests.csproj.new \
-            <scalar/Scalar.FunctionalTests/Scalar.FunctionalTests.csproj
 
       - name: Build
         working-directory: scalar
