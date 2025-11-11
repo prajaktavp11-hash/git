@@ -133,7 +133,7 @@ jobs:
           echo "BUILD_FRAGMENT=bin/Release/net9.0" >>$GITHUB_ENV &&
 
           props=scalar/Directory.Build.props &&
-          sed 's/\(<RuntimeIdentifiers>\)[^<]*/\1osx-arm64' <$props >$props.new &&
+          sed 's/\(<RuntimeIdentifiers>\)[^<]*/\1osx-arm64/' <$props >$props.new &&
           mv $props.new $props
 
       - name: Setup .NET
