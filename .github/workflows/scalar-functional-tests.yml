@@ -128,7 +128,13 @@ jobs:
         run:
           csproj=scalar/Scalar.FunctionalTests/Scalar.FunctionalTests.csproj &&
           sed 's/netcoreapp3\.1/net9.0/g' <$csproj >$csproj.new &&
-          mv $csproj.new $csproj
+          mv $csproj.new $csproj &&
+
+          echo "BUILD_FRAGMENT=bin/Release/net9.0" >>$GITHUB_ENV &&
+
+          props=Directory.Build.props &&
+          sed 's/\(<RuntimeIdentifiers>\)[^<]*/\1osx-arm64' <$props >$props.new &&
+          mv $props.new $props
 
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
