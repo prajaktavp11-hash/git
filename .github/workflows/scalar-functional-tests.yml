@@ -135,7 +135,11 @@ jobs:
 
       - name: Target .NET 9
         run:
-          sed -i 's/netcoreapp3\.1/net9.0/g' scalar/Scalar.FunctionalTests/Scalar.FunctionalTests.csproj
+          sed 's/netcoreapp3\.1/net9.0/g' \
+            <scalar/Scalar.FunctionalTests/Scalar.FunctionalTests.csproj \
+            <scalar/Scalar.FunctionalTests/Scalar.FunctionalTests.csproj.new &&
+          mv <scalar/Scalar.FunctionalTests/Scalar.FunctionalTests.csproj.new \
+            <scalar/Scalar.FunctionalTests/Scalar.FunctionalTests.csproj
 
       - name: Build
         working-directory: scalar
